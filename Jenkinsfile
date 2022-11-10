@@ -10,7 +10,10 @@ node {
   }
   
   stage 'Restart existing container with latest image'
-  sh "docker stop test-container"
-  sh "docker rm test-container"
+  sh '''if [ $( docker ps | grep test-container | wc -l ) -gt 0 ]; then
+    docker stop test-container
+    docker rm test-container
+  fi
+  '''
   sh "docker run -d -p 80:80 --name test-container ghcr.io/zeborg/jenkins-pipeline-test:latest"
 }
