@@ -15,5 +15,5 @@ node {
     docker rm test-container
   fi
   '''
-  sh "docker run -d -p 80:80 --mount 'type=volume,src=$PWD/index.html,dst=/var/www/html' --name test-container ghcr.io/zeborg/jenkins-pipeline-test:latest"
+  sh "docker run -d -p 80:80 --mount 'type=volume,src=$PWD,dst=/var/www/html' --name test-container ghcr.io/zeborg/jenkins-pipeline-test:latest"
 }
